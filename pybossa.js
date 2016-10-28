@@ -83,14 +83,22 @@
         return task;
     }
 
+    function _addSavedTimeToTask(task, answer) {
+        task.savedTime = new Date().toJSON();
+        return task;
+    }
+
     function _createTaskRun(answer, task) {
         task = _addAnswerToTask(task, answer);
+        task = _addSavedTimeToTask(task);
         var taskrun = {
             'project_id': task.project_id,
             'task_id': task.id,
-            'info': task.answer
+            'info': task.answer,
+            'saved_time': task.savedTime
         };
         taskrun = JSON.stringify(taskrun);
+        console.log(taskrun); // remove after testing
         return _saveTaskRun(taskrun).then(function(data) {return data;});
     }
 
