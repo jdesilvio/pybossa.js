@@ -17,7 +17,8 @@
 
 
 (function(pybossa, $, undefined) {
-    var url = '/';
+    var url = '/',
+        presentedTime;
 
     //AJAX calls
     function _userProgress(projectname) {
