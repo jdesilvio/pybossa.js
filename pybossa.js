@@ -88,17 +88,24 @@
         return task;
     }
 
+    function _addPresentedTimeToTask(task, answer) {
+        task.presentedTime = presentedTime;
+        return task;
+    }
+
     function _createTaskRun(answer, task) {
         task = _addAnswerToTask(task, answer);
+        task = _addPresentedTimeToTask(task);
         task = _addSavedTimeToTask(task);
         var taskrun = {
             'project_id': task.project_id,
             'task_id': task.id,
             'info': task.answer,
+            'presented_time': task.presentedTime,
             'saved_time': task.savedTime
         };
         taskrun = JSON.stringify(taskrun);
-        console.log(taskrun); // remove after testing
+        console.log(taskrun); // TODO: remove after testing
         return _saveTaskRun(taskrun).then(function(data) {return data;});
     }
 
@@ -178,6 +185,8 @@
                     history.pushState({}, "Title", nextUrl);
                 }
                 _presentTask(task, taskSolved);
+                presentedTime = new Date().toJSON();
+                console.log(presentedTime); // TODO: remove after testing
                 $.when(nextLoaded, taskSolved).done(loop);
             }
             getNextTask(0, undefined).done(loop);
