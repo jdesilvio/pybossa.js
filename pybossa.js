@@ -102,8 +102,8 @@
             'project_id': task.project_id,
             'task_id': task.id,
             'info': task.answer,
-            'presented_time': task.presentedTime,
-            'saved_time': task.savedTime
+            'created': task.presentedTime,
+            'finish_time': task.savedTime
         };
         taskrun = JSON.stringify(taskrun);
         console.log(taskrun); // TODO: remove after testing
