@@ -106,7 +106,6 @@
             'finish_time': task.finishTime
         };
         taskrun = JSON.stringify(taskrun);
-        console.log(taskrun); // TODO: remove after testing
         return _saveTaskRun(taskrun).then(function(data) {return data;});
     }
 
@@ -187,7 +186,6 @@
                 }
                 _presentTask(task, taskSolved);
                 created = new Date().toJSON();
-                console.log(created); // TODO: remove after testing
                 $.when(nextLoaded, taskSolved).done(loop);
             }
             getNextTask(0, undefined).done(loop);
